@@ -37,23 +37,6 @@ export interface ITerminalService {
    * @param sessionIds
    */
   check?(sessionIds: string[]): Promise<boolean>;
-  /**
-   * @deprecated will remove on 2.17.0, please use `attachByLaunchConfig` instead
-   * @param sessionId 会话唯一标识
-   * @param xterm 返回的 Xterm 终端实例
-   * @param rows 终端初始化使用的列数
-   * @param cols 终端初始化使用的行数
-   * @param options 创建一个新终端的进程选项
-   * @param shellType 终端类型
-   */
-  attach(
-    sessionId: string,
-    xterm: Terminal,
-    cols: number,
-    rows: number,
-    options?: TerminalOptions,
-    shellType?: string,
-  ): Promise<ITerminalConnection | undefined>;
   attachByLaunchConfig(
     sessionId: string,
     cols: number,

@@ -146,32 +146,10 @@ export interface TerminalOptions {
    * recommended for the best contrast and consistency across themes.
    */
   color?: vscode.ThemeColor;
-
-  /**
-   * @deprecated Use `ICreateClientWithWidgetOptions.closeWhenExited` instead. Will removed in 2.17.0
-   * pty 进程退出后是否自动关闭 terminal 控件
-   */
-  closeWhenExited?: boolean;
-
-  /**
-   * @deprecated Use `ICreateClientWithWidgetOptions.args` instead. Will removed in 2.17.0
-   * 自定义的参数，由上层集成方自行控制
-   */
-  args?: any;
-
-  /**
-   * @deprecated Use `ICreateClientWithWidgetOptions.beforeCreate` instead. Will removed in 2.17.0
-   * 自定义的参数，由上层集成方自行控制
-   */
-  beforeCreate?: (terminalId: string) => void;
 }
 
 export const ITerminalNodeService = Symbol('ITerminalNodeService');
 export interface ITerminalNodeService {
-  /**
-   * @deprecated this overload signature will be removed in 2.17.0
-   */
-  create2(id: string, launchConfig: IShellLaunchConfig): Promise<IPtyProcess | undefined>;
   create2(id: string, cols: number, rows: number, options: IShellLaunchConfig): Promise<IPtyProcess | undefined>;
   onMessage(id: string, msg: string): void;
   resize(id: string, rows: number, cols: number): void;

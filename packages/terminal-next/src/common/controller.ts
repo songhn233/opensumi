@@ -54,10 +54,6 @@ export interface ITerminalController extends Disposable {
   blur(): void;
   onContextMenu(e: React.MouseEvent<HTMLElement>): void;
   findClientFromWidgetId(widgetId: string): ITerminalClient | undefined;
-  /**
-   * @deprecated 请使用 `createClientWithWidget2` Will removed in 2.17.0
-   */
-  createClientWithWidget(options: TerminalOptions): Promise<ITerminalClient>;
   createClientWithWidget2(options: ICreateClientWithWidgetOptions): Promise<ITerminalClient>;
   clearCurrentGroup(): void;
   clearAllGroups(): void;

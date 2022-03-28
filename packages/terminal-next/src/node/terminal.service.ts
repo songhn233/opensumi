@@ -85,32 +85,14 @@ export class TerminalServiceImpl implements ITerminalNodeService {
     serviceClient.clientMessage(sessionId, ptyData);
   }
 
-  public async create2(id: string, cols: IShellLaunchConfig): Promise<IPtyProcess | undefined>;
   public async create2(
     id: string,
     cols: number,
     rows: number,
-    options: IShellLaunchConfig,
-  ): Promise<IPtyProcess | undefined>;
-  public async create2(
-    id: string,
-    _cols: unknown,
-    _rows?: unknown,
-    _launchConfig?: unknown,
+    launchConfig: IShellLaunchConfig,
   ): Promise<IPtyProcess | undefined> {
     const clientId = id.split('|')[0];
     let ptyService: PtyService | undefined;
-    let cols = _cols as number;
-    let rows = _rows as number;
-    let launchConfig = _launchConfig as IShellLaunchConfig;
-    if (!(typeof cols === 'number')) {
-      launchConfig = cols as IShellLaunchConfig;
-      cols = (launchConfig as any).cols;
-      rows = (launchConfig as any).rows;
-      if ((launchConfig as any).shellPath) {
-        launchConfig.executable = (launchConfig as any).shellPath;
-      }
-    }
 
     try {
       ptyService = this.injector.get(PtyService, [id, launchConfig, cols, rows]);
