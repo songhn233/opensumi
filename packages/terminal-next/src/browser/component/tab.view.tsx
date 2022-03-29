@@ -47,6 +47,7 @@ export default observer(() => {
             view.createWidget(group);
             view.selectGroup(index);
           }}
+          onDropdown={(event) => menuService.onDropDownContextMenu(event)}
           provider={provider}
         />
       </div>
