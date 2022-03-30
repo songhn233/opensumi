@@ -56,6 +56,12 @@ export class TerminalProfileService extends WithEventBus implements ITerminalPro
 
   private commandAndMenuDisposeCollection: DisposableCollection;
 
+  private onTerminalProfileResolvedEmitter: Emitter<string> = new Emitter();
+
+  get onTerminalProfileResolved() {
+    return this.onTerminalProfileResolvedEmitter.event;
+  }
+
   get profilesReady(): Promise<void> {
     return this._profilesReadyBarrier.wait().then(() => {});
   }
@@ -107,6 +113,7 @@ export class TerminalProfileService extends WithEventBus implements ITerminalPro
     id: string,
     options: ICreateContributedTerminalProfileOptions,
   ): Promise<void> {
+    await this.onTerminalProfileResolvedEmitter.fireAndAwait(id);
     const profileProvider = this.getContributedProfileProvider(extensionIdentifier, id);
     if (!profileProvider) {
       this.logger.error(`No terminal profile provider registered for id "${id}"`);
