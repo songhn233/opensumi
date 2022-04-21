@@ -1,4 +1,8 @@
+const Canvas = require('@napi-rs/canvas');
 const { JSDOM } = require('jsdom');
+
+const { createCanvas, HTMLCanvasElement } = Canvas;
+
 const jsdom = new JSDOM('<div id="main"></div>', {
   // https://github.com/jsdom/jsdom#basic-options
   // 禁用掉 resources: usable, 采用 jsdom 默认策略不加载 subresources
@@ -7,7 +11,20 @@ const jsdom = new JSDOM('<div id="main"></div>', {
   runScripts: 'dangerously',
   url: 'http://localhost/?id=1',
 });
+global.HTMLCanvasElement = HTMLCanvasElement;
 global.document = jsdom.window.document;
+const canvas = createCanvas(400, 400);
+jsdom.window.HTMLCanvasElement.prototype.getContext = canvas.getContext.bind(canvas);
+jsdom.window.HTMLSpanElement.prototype.getBoundingClientRect = () => ({
+  height: 12,
+  width: 12,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  top: 0,
+  x: 0,
+  y: 0,
+});
 let text = '';
 global.navigator = Object.assign(jsdom.window.navigator, {
   clipboard: {
