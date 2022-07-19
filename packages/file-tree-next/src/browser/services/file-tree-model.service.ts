@@ -42,7 +42,7 @@ import { WorkbenchEditorService } from '@opensumi/ide-editor';
 import { FileStat } from '@opensumi/ide-file-service';
 import { IDialogService, IMessageService } from '@opensumi/ide-overlay';
 
-import { IFileTreeAPI, IFileTreeService, PasteTypes } from '../../common';
+import { IFileTreeAPI, IFileTreeService, PasteTypes, PASTE_FILE_LOCAL_TOKEN } from '../../common';
 import { Directory, File } from '../../common/file-tree-node.define';
 import { FileTreeModel } from '../file-tree-model';
 import { FILE_TREE_NODE_HEIGHT } from '../file-tree-node';
