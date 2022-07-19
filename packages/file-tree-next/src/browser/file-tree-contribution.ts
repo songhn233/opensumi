@@ -50,7 +50,7 @@ import { IOpenDialogOptions, IWindowDialogService, ISaveDialogOptions } from '@o
 import { TERMINAL_COMMANDS } from '@opensumi/ide-terminal-next';
 import { DEFAULT_WORKSPACE_SUFFIX_NAME, IWorkspaceService, UNTITLED_WORKSPACE } from '@opensumi/ide-workspace';
 
-import { IFileTreeService, PasteTypes, RESOURCE_VIEW_ID } from '../common';
+import { IFileTreeService, PasteTypes, PASTE_FILE_LOCAL_TOKEN, RESOURCE_VIEW_ID } from '../common';
 import { Directory } from '../common/file-tree-node.define';
 
 import { FileTree } from './file-tree';
@@ -840,7 +840,8 @@ export class FileTreeContribution
         }
       },
       isEnabled: () =>
-        this.fileTreeModelService.pasteStore && this.fileTreeModelService.pasteStore.type !== PasteTypes.NONE,
+        (this.fileTreeModelService.pasteStore && this.fileTreeModelService.pasteStore.type !== PasteTypes.NONE) ||
+        !!localStorage.getItem(PASTE_FILE_LOCAL_TOKEN),
     });
 
     if (this.appConfig.isElectronRenderer) {
