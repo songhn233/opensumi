@@ -311,6 +311,7 @@ export const localizationBundle = {
     'debug.console.collapseAll': 'Collapse All',
     'debug.console.followLink': '{0} + click to follow link',
     'debug.console.input.placeholder': 'Please start a debug session to evaluate expressions',
+    'debug.console.errorMessage': 'Debug session initialization failed. See console for details.',
     'debug.notSupported.type': 'Debug type "{0}" is not supported, please check your launch config.',
     'debug.notSupported.any': 'Debug is not supported, please check your launch config.',
 
@@ -353,6 +354,7 @@ export const localizationBundle = {
     'debug.menu.add.conditional': 'Add Condition Breakpoint',
     'debug.menu.add.breakpoint': 'Add Breakpoint',
     'debug.menu.disable.logpoint': 'Disable Log Breakpoint',
+    'debug.menu.title.run': 'Run or Debug...',
     'debug.stack.frame.noSource': 'Unknown',
     'debug.stack.frame.because': 'Because Of',
     'debug.stack.frame.stopped': 'Stopped',
@@ -587,6 +589,9 @@ export const localizationBundle = {
     'editor.workspaceSymbol.notfound': 'No symbols matching',
     'editor.workspaceSymbolClass.notfound': 'No class symbols matching',
 
+    'editor.experimental.stickyScroll.enabled.description':
+      'Shows the nested current scopes during the scroll at the top of the editor.',
+
     'preference.diffEditor.renderSideBySide': 'Render Side By Side',
     'preference.diffEditor.ignoreTrimWhitespace': 'Ignore Trim Whitespace',
     'diffEditor.configuration.renderSideBySide':
@@ -710,6 +715,7 @@ export const localizationBundle = {
     'keymaps.edit.placeholder': 'Press Enter to save',
     'keymaps.editorTitle.openSource': 'Open Keymap ShortCut(JSON)',
     'keymaps.editorTitle.openKeymap': 'Open Keymap ShortCut',
+    'keymaps.commandId.title': 'Command ID: {0}',
 
     'keybinding.combination.tip': '({0}) was pressed, waiting for more keys',
 

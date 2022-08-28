@@ -266,6 +266,7 @@ export const localizationBundle = {
     'debug.console.copyAll': '复制全部',
     'debug.console.collapseAll': '折叠全部',
     'debug.console.followLink': '按住 {0} 并单击可访问链接',
+    'debug.console.errorMessage': '调试进程初始化异常，请打开控制面板查看错误日志',
     'debug.console.input.placeholder': '请发起调试会话来对表达式求值',
     'debug.notSupported.type': '调试类型 "{0}" 不是支持的调试类型，请检查配置或安装对应调试插件',
     'debug.notSupported.any': '当前调试配置不支持，请检查配置或安装对应调试插件',
@@ -328,6 +329,7 @@ export const localizationBundle = {
     'debug.menu.add.conditional': '添加条件断点',
     'debug.menu.add.breakpoint': '添加断点',
     'debug.menu.disable.logpoint': '禁用记录点',
+    'debug.menu.title.run': '运行或调试...',
     'debug.stack.frame.noSource': '未知源',
     'debug.stack.frame.because': '因',
     'debug.stack.frame.stopped': '已暂停',
@@ -539,6 +541,7 @@ export const localizationBundle = {
     'editor.closeEditorsInOtherGroups': '关闭其他组中的编辑器',
     'editor.resetEditorGroups': '重置编辑器组大小',
     'editor.revert': '还原文档',
+    'editor.experimental.stickyScroll.enabled.description': '在编辑器顶部的滚动过程中显示嵌套的当前作用域。',
 
     'preference.diffEditor.renderSideBySide': '显示并排差异编辑器',
     'preference.diffEditor.ignoreTrimWhitespace': '忽略差异编辑器的前导和尾随空白字符',
@@ -727,6 +730,7 @@ export const localizationBundle = {
     'keymaps.header.source.title': '作用域',
     'keymaps.header.keybinding.title': '快捷键',
     'keymaps.header.when.title': '条件',
+    'keymaps.commandId.title': '命令 ID：{0}',
 
     'keymaps.source.default': '默认',
     'keymaps.source.user': '用户',

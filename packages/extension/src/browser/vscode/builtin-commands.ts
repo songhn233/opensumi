@@ -1,4 +1,4 @@
-import { FILE_COMMANDS, Command, EDITOR_COMMANDS } from '@opensumi/ide-core-browser';
+import { FILE_COMMANDS, Command, EDITOR_COMMANDS, COMMON_COMMANDS, MARKER_COMMANDS } from '@opensumi/ide-core-browser';
 import { DEBUG_COMMANDS } from '@opensumi/ide-debug/lib/browser/debug-contribution';
 import { TERMINAL_COMMANDS } from '@opensumi/ide-terminal-next';
 
@@ -234,6 +234,11 @@ export const SETTINGS_COMMAND_OPEN_SETTINGS: Command = {
   delegate: 'core.openpreference',
 };
 
+export const SETTINGS_COMMAND_OPEN_GLOBAL_SETTINGS: Command = {
+  id: 'workbench.action.openGlobalSettings',
+  delegate: COMMON_COMMANDS.OPEN_PREFERENCES.id,
+};
+
 export const SETTINGS_COMMAND_OPEN_SETTINGS_JSON: Command = {
   id: 'workbench.action.openSettingsJson',
   delegate: 'preference.open.source',
@@ -311,4 +316,9 @@ export const REVEAL_IN_EXPLORER: Command = {
 
 export const GET_EXTENSION: Command = {
   id: 'extension.getDescription',
+};
+
+export const MARKER_COMMAND_SHOW_ERRORS_WARNINGS: Command = {
+  id: 'workbench.action.showErrorsWarnings',
+  delegate: MARKER_COMMANDS.SHOW_ERRORS_WARNINGS.id,
 };

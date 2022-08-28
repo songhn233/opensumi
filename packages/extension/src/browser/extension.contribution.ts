@@ -149,7 +149,7 @@ export class ExtensionClientAppContribution implements ClientAppContribution {
       const contributeName = Reflect.getMetadata(CONTRIBUTE_NAME_KEY, contributeCls);
       this.extensionsPointService.registerExtensionPoint({
         extensionPoint: contributeName,
-        jsonSchema: contributeCls.schema,
+        jsonSchema: contributeCls.schema || {},
         frameworkKind: ['vscode', 'opensumi'],
       });
     }
@@ -158,7 +158,7 @@ export class ExtensionClientAppContribution implements ClientAppContribution {
       const contributeName = Reflect.getMetadata(CONTRIBUTE_NAME_KEY, contributeCls);
       this.extensionsPointService.registerExtensionPoint({
         extensionPoint: contributeName,
-        jsonSchema: contributeCls.schema,
+        jsonSchema: contributeCls.schema || {},
         frameworkKind: ['opensumi'],
       });
     }
@@ -454,9 +454,12 @@ export class ExtensionCommandContribution implements CommandContribution {
       VSCodeBuiltinCommands.CLEAR_TERMINAL,
       VSCodeBuiltinCommands.TOGGLE_WORKBENCH_VIEW_TERMINAL,
       VSCodeBuiltinCommands.NEW_WORKBENCH_VIEW_TERMINAL,
+      // marker builtin commands
+      VSCodeBuiltinCommands.MARKER_COMMAND_SHOW_ERRORS_WARNINGS,
       // others
       VSCodeBuiltinCommands.RELOAD_WINDOW,
       VSCodeBuiltinCommands.SETTINGS_COMMAND_OPEN_SETTINGS,
+      VSCodeBuiltinCommands.SETTINGS_COMMAND_OPEN_GLOBAL_SETTINGS,
       VSCodeBuiltinCommands.SETTINGS_COMMAND_OPEN_SETTINGS_JSON,
     ].forEach((command) => {
       registry.registerCommand(command);

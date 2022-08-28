@@ -1713,7 +1713,7 @@ export class FileTreeModelService {
       if (!this.fileTreeHandle) {
         return;
       }
-      const node = (await this.fileTreeHandle.ensureVisible(path, 'smart', true)) as File;
+      const node = (await this.fileTreeHandle.ensureVisible(path, 'center', true)) as File;
       if (node) {
         this.selectFileDecoration(node);
       }

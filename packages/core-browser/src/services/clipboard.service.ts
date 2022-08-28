@@ -1,10 +1,11 @@
 import { Autowired, Injectable } from '@opensumi/di';
+import { IClipboardService } from '@opensumi/ide-core-common';
 import { URI } from '@opensumi/ide-core-common';
 
 import { ILogger } from '../logger';
 
-export const IClipboardService = Symbol('IClipboardService');
 export const PASTE_FILE_LOCAL_TOKEN = 'paste-uri-list';
+export { IClipboardService } from '@opensumi/ide-core-common';
 
 export interface IClipboardService {
   /**

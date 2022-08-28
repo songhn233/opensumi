@@ -19,9 +19,9 @@ import {
 import { EditorCollectionService } from '@opensumi/ide-editor';
 import { IEditorDocumentModelService, IEditorDocumentModel } from '@opensumi/ide-editor/lib/browser';
 import type { ITextModel } from '@opensumi/monaco-editor-core/esm/vs/editor/common/model';
-import { IEditorWorkerService } from '@opensumi/monaco-editor-core/esm/vs/editor/common/services/editorWorkerService';
+import { IEditorWorkerService } from '@opensumi/monaco-editor-core/esm/vs/editor/common/services/editorWorker';
 import * as monaco from '@opensumi/monaco-editor-core/esm/vs/editor/editor.api';
-import { StaticServices } from '@opensumi/monaco-editor-core/esm/vs/editor/standalone/browser/standaloneServices';
+import { StandaloneServices } from '@opensumi/monaco-editor-core/esm/vs/editor/standalone/browser/standaloneServices';
 
 import { SCMService, ISCMRepository, IDirtyDiffModel } from '../../common';
 
@@ -72,13 +72,23 @@ export class DirtyDiffModel extends Disposable implements IDirtyDiffModel {
   static maxFileSize = 50;
 
   private get editorWorkerService(): IEditorWorkerService {
-    return StaticServices.editorWorkerService.get();
+    return StandaloneServices.get(IEditorWorkerService);
   }
 
   constructor(@Optional() editorModel: IEditorDocumentModel) {
     super();
     this._editorModel = editorModel;
     this.diffDelayer = new ThrottledDelayer<IChange[]>(200);
+    this.addDispose(
+      Disposable.create(() => {
+        if (this.diffDelayer) {
+          if (!this.diffDelayer.isTriggered()) {
+            this.diffDelayer.cancel();
+          }
+          this.diffDelayer = null;
+        }
+      }),
+    );
 
     this.addDispose(editorModel.getMonacoModel().onDidChangeContent(() => this.triggerDiff()));
     this.addDispose(
@@ -361,11 +371,6 @@ export class DirtyDiffModel extends Disposable implements IDirtyDiffModel {
 
     this._editorModel = null;
     this._originalModel = null;
-
-    if (this.diffDelayer) {
-      this.diffDelayer.cancel();
-      this.diffDelayer = null;
-    }
 
     this.repositoryDisposables.forEach((d) => dispose(d));
     this.repositoryDisposables.clear();
